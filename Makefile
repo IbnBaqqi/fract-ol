@@ -1,0 +1,61 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/21 17:23:16 by sabdulba          #+#    #+#              #
+#    Updated: 2024/11/21 22:07:52 by sabdulba         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME := fractol
+CC := cc
+RM := rm -rf
+FLAG := -Wall -Wextra -Werror
+
+MLX := $(MLX_DIR)/build/libmlx42.a
+MLX_DIR := ./lib/MLX42
+LIBFT := $(LIBFT_DIR)/libft.a
+LIBFT_DIR := ./lib/libft
+HEADERS := -I ./inc -I $(MLX_DIR)/include/MLX42 -I $(LIBFT_DIR)/inc
+
+LINK := -L$(LIBFT_DIR) -lft $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+
+SRC_DIR := src
+SRC := $(shell ls src/*.c)
+
+OBJ_DIR := obj
+OBJ := $(SRC:src%.c=obj%.o)
+
+all: $(NAME)
+
+$(MLX): $(MLX_DIR)
+	cmake $(MLX_DIR) -B $(MLX_DIR)/build;
+	make -C$(MLX_DIR)/build -j4;
+
+$(LIBFT): $(LIBFT_DIR)
+	make -C $(LIBFT_DIR);
+
+$(OBJ_DIR):
+	mkdir obj
+
+$(NAME): $(MLX) $(LIBFT) $(OBJ_DIR) $(OBJ)
+	$(CC) $(OBJ) $(LINK) $(HEADERS) -o $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c inc/fractol.h
+	$(CC) -c $(FLAG) $< -o $@ $(HEADERS)
+
+clean:
+	$(RM) $(NAME)
+	$(RM) $(OBJ_DIR)/*.o
+	$(RM) $(LIBFT_DIR)/libft.a
+	$(RM) $(MLX_DIR)/build/libmlx42.a
+
+fclean: clean
+	@rm -f $(NAME)
+	$(RM) $(OBJ_DIR)
+
+re: fclean all
+
