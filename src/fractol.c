@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:22:49 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/11/21 22:19:43 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/11/22 17:12:10 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@
 // See README in the root project for more information.
 // -----------------------------------------------------------------------------
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "../inc/fractol.h"
+
 //#include <MLX42/MLX42.h>
 
 #define WIDTH 512
@@ -107,3 +105,4 @@ int32_t main(void)
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
 }
+
