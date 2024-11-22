@@ -6,7 +6,7 @@
 #    By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 17:23:16 by sabdulba          #+#    #+#              #
-#    Updated: 2024/11/22 14:38:44 by sabdulba         ###   ########.fr        #
+#    Updated: 2024/11/22 15:09:34 by sabdulba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,12 @@ $(MLX): $(MLX_DIR)
 $(LIBFT): $(LIBFT_DIR)
 	make -C $(LIBFT_DIR);
 
+$(MLX_DIR):
+	git clone https://github.com/codam-coding-college/MLX42.git $@;
+
+$(LIBFT_DIR):
+	git clone https://github.com/IbnBaqqi/libft.git $@;
+
 $(OBJ_DIR):
 	mkdir obj
 
@@ -64,5 +70,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	$(RM) $(OBJ_DIR)
+	$(RM) $(LIBFT_DIR)
+	$(RM) $(MLX_DIR)
 
 re: fclean all
