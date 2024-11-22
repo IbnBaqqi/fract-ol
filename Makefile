@@ -6,7 +6,7 @@
 #    By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 17:23:16 by sabdulba          #+#    #+#              #
-#    Updated: 2024/11/21 22:07:52 by sabdulba         ###   ########.fr        #
+#    Updated: 2024/11/22 14:38:44 by sabdulba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,14 @@ LIBFT := $(LIBFT_DIR)/libft.a
 LIBFT_DIR := ./lib/libft
 HEADERS := -I ./inc -I $(MLX_DIR)/include/MLX42 -I $(LIBFT_DIR)/inc
 
-LINK := -L$(LIBFT_DIR) -lft $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+UNAME_S	:= $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	LINK := -L$(LIBFT_DIR) -lft $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm
+endif
+ifeq ($(UNAME_S),Darwin)
+	LINK := -L$(LIBFT_DIR) -lft $(MLX_DIR)/build/libmlx42.a \
+	-Iinclude -lglfw -L"/opt/homebrew/opt/glfw" -pthread -lm
+endif
 
 SRC_DIR := src
 SRC := $(shell ls src/*.c)
@@ -51,6 +58,7 @@ clean:
 	$(RM) $(NAME)
 	$(RM) $(OBJ_DIR)/*.o
 	$(RM) $(LIBFT_DIR)/libft.a
+	$(RM) $(LIBFT_DIR)/obj
 	$(RM) $(MLX_DIR)/build/libmlx42.a
 
 fclean: clean
@@ -58,4 +66,3 @@ fclean: clean
 	$(RM) $(OBJ_DIR)
 
 re: fclean all
-
