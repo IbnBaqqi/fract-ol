@@ -6,7 +6,7 @@
 #    By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 17:23:16 by sabdulba          #+#    #+#              #
-#    Updated: 2024/11/22 17:38:17 by sabdulba         ###   ########.fr        #
+#    Updated: 2024/11/25 11:58:22 by sabdulba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,3 +74,6 @@ fclean: clean
 	$(RM) $(MLX_DIR)
 
 re: fclean all
+
+r: all
+	./$(NAME)
