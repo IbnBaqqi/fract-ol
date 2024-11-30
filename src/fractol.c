@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:22:49 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/11/30 15:53:37 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/11/30 21:50:45 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,23 +96,6 @@ static void draw_pixel_hort(int x, int y, mlx_image_t* img, uint32_t color)
 	}
 }
 */
-int main(void)
-{
-	t_fractal frac;
-	frac.mlx = mlx_init(WIDTH, HEIGHT, "fractol", true);
-	if (!frac.mlx)
-		ft_error();
-	frac.img = mlx_new_image(frac.mlx, WIDTH, HEIGHT);
-	if (!frac.img)
-	{
-    	write(1, "Image creation failed\n", 22);
-    	return 1;
-	}
-	draw_pixel(&frac, WIDTH, HEIGHT, RED);
-	mlx_image_to_window(frac.mlx, frac.img, 0, 0);
-	mlx_loop(frac.mlx);
-	mlx_terminate(frac.mlx);
-}
 
 static void draw_pixel(t_fractal *frac, int32_t width, int32_t height, uint32_t color)
 {
@@ -130,4 +113,21 @@ static void draw_pixel(t_fractal *frac, int32_t width, int32_t height, uint32_t 
 		}
 		x++;
 	}
+}
+int main(void)
+{
+	t_fractal frac;
+	frac.mlx = mlx_init(WIDTH, HEIGHT, "fractol", true);
+	if (!frac.mlx)
+		ft_error();
+	frac.img = mlx_new_image(frac.mlx, WIDTH, HEIGHT);
+	if (!frac.img)
+	{
+    	write(1, "Image creation failed\n", 22);
+    	return 1;
+	}
+	draw_pixel(&frac, WIDTH, HEIGHT, RED);
+	mlx_image_to_window(frac.mlx, frac.img, 0, 0);
+	mlx_loop(frac.mlx);
+	mlx_terminate(frac.mlx);
 }
