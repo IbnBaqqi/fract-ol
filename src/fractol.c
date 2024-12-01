@@ -6,12 +6,12 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:22:49 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/11/30 21:50:45 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/01 03:04:43 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fractol.h"
-static void draw_pixel(t_fractal *frac, int32_t width, int32_t height, uint32_t color);
+//static void draw_pixel(t_fractal *frac, int32_t width, int32_t height, uint32_t color);
 /*
 
 #include <stdlib.h>
@@ -95,7 +95,7 @@ static void draw_pixel_hort(int x, int y, mlx_image_t* img, uint32_t color)
 		x++;
 	}
 }
-*/
+
 
 static void draw_pixel(t_fractal *frac, int32_t width, int32_t height, uint32_t color)
 {
@@ -114,6 +114,12 @@ static void draw_pixel(t_fractal *frac, int32_t width, int32_t height, uint32_t 
 		x++;
 	}
 }
+
+static void frac_pixel(t_fractal *frac, int x, int y)
+{
+	
+}
+
 int main(void)
 {
 	t_fractal frac;
@@ -131,3 +137,4 @@ int main(void)
 	mlx_loop(frac.mlx);
 	mlx_terminate(frac.mlx);
 }
+*/
