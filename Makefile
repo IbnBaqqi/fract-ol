@@ -6,7 +6,7 @@
 #    By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 17:23:16 by sabdulba          #+#    #+#              #
-#    Updated: 2024/11/25 11:58:22 by sabdulba         ###   ########.fr        #
+#    Updated: 2024/12/01 18:11:57 by sabdulba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,5 +75,8 @@ fclean: clean
 
 re: fclean all
 
-r: all
-	./$(NAME)
+m: all
+	./$(NAME) mandelbrot
+
+j: all
+	./$(NAME) julia
