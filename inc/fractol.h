@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:39 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/01 20:17:13 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:32:39 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@
 #include "color.h"
 
 #include "../lib/libft/inc/libft.h"
-//#include "../lib/libft/inc/ft_printf.h" // already added it to libft.h
 #include "../lib/MLX42/include/MLX42/MLX42.h"
 
-#define WIDTH 500
-#define HEIGHT 500
+#define WIDTH 1000
+#define HEIGHT 1000
 
 #define ERROR_MSG "Available set are:\n\tmandelbrot and julia.\nRun with \"./fractol setname\"\njulia set requires range/cordinate.\n"
 #define IMG_ERROR  "Image creation failed\n"
@@ -43,10 +42,10 @@ typedef struct s_fractal
 	int			max_iterations;	// Maximum iterations for fractal calculation
 }	t_fractal;
 
-void	ft_error(void);
-//scale the  size of the window to a much size within the fractal set usually -2 to +1
-double	scale(double num, double min_n, double max_n, double min, double max);
-int		mandelbrot(double x, double y, t_fractal *frac);
-void	fractol_base(t_fractal *frac); //might change to static later
+void		ft_error(void);
+double		scale(double num, double min_n, double max_n, double min, double max);
+int			mandelbrot(double x, double y, t_fractal *frac);
+int			fractol_base(t_fractal *frac); //might change to static later
+//uint32_t	hsv_to_rgb(double h, double s, double v);
 
 # endif

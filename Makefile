@@ -6,7 +6,7 @@
 #    By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 17:23:16 by sabdulba          #+#    #+#              #
-#    Updated: 2024/12/01 18:11:57 by sabdulba         ###   ########.fr        #
+#    Updated: 2024/12/02 12:23:23 by sabdulba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,4 +79,4 @@ m: all
 	./$(NAME) mandelbrot
 
 j: all
-	./$(NAME) julia
+	./$(NAME) julia 6 7

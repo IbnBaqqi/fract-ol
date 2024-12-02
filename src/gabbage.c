@@ -22,3 +22,29 @@
 // 	mlx_terminate(mlx);
 // 	return (EXIT_SUCCESS);
 // }
+
+/* int main(int ac, char **av)
+{
+	t_fractal frac;
+	    // Initialize fractal parameters
+    frac.min = -3.0;
+    frac.max = 3.0;
+	frac.max_iterations = 50;
+	frac.name = av[1]; //To edit
+	if (ac == 2)
+	{
+		if (!ft_strncmp(av[1], "mandelbrot", 10))
+			fractol_base(&frac);
+	}
+	else if (ac == 4)
+	{
+		if (ft_strncmp(av[1], "julia", 5))
+			fractol_base(&frac);
+	}
+	else
+	{
+		ft_putstr_fd(ERROR_MSG, 1);
+		exit(EXIT_FAILURE);
+	}
+	return (0);
+} */

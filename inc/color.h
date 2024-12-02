@@ -12,6 +12,19 @@
 #define YELLOW     0xFFFF00FF // Yellow (red + green)
 #define GRAY       0x808080FF // Gray
 
+//psychedelic themes
+#define NEON_PINK     0xFF69B4FF // Neon Pink
+#define ELECTRIC_BLUE 0x7DF9FFFF // Electric Blue
+#define LIME_GREEN    0x32CD32FF // Lime Green
+#define BRIGHT_YELLOW 0xFFFF00FF // Bright Yellow
+#define HOT_ORANGE    0xFF4500FF // Hot Orange
+#define VIVID_PURPLE  0x9400D3FF // Vivid Purple
+#define TURQUOISE     0x40E0D0FF // Turquoise
+#define SUNNY_GOLD    0xFFD700FF // Sunny Gold
+#define RICH_INDIGO   0x4B0082FF // Rich Indigo
+#define GLOWING_TEAL  0x008080FF // Glowing Teal
+
+
 //Light shades 
 #define LIGHT_RED     0xFF8080FF // Light red
 #define LIGHT_GREEN   0x80FF80FF // Light green
