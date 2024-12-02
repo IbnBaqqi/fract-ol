@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:22:49 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/02 21:23:26 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/02 23:45:41 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-static void draw_pixel(t_fractal *frac, int32_t width, int32_t height);
+//static void draw_pixel(t_fractal *frac, int32_t width, int32_t height);
 
 //draw the fractol set
 static void draw_frac(t_fractal *frac, int x, int y)
@@ -24,31 +24,21 @@ static void draw_frac(t_fractal *frac, int x, int y)
 	int		n;
 	uint32_t color;
 	
-	a = scale(x, frac->min, frac->max, 0, HEIGHT);
-	b = scale(y, frac->min, frac->max, 0, WIDTH);
+	a = scale(x, frac->min, frac->max, 0, HEIGHT) + frac->xshift;
+	b = scale(y, frac->min, frac->max, 0, WIDTH) + frac->xshift;
 	n = mandelbrot(a, b, frac);
 	
-	//Brightness mapping
-	double bright = scale(n, BLACK, WHITE, 0, frac->max_iterations);
-	bright = sqrt(bright) * 255.0;
+	color = scale(n, BLACK, WHITE, 0, frac->max_iterations);
+	//bright = sqrt(bright) * 255.0;
 	if (n == frac->max_iterations) {
-		bright = WHITE; // Point is in the set
+		color = WHITE;
 	}
-
-	// Calculate color (grayscale)
-	color = bright;
 	//color = (int)bright << 24 | (int)bright << 16 | (int)bright << 8 | 255;
-/* 	double t = scale(n, 0, frac->max_iterations, 0, 1.0);
-	color = hsv_to_rgb(t * 360.0, 1.0, t);
-
-	if (n == frac->max_iterations) {
-		color = 0x000000FF; // Black for points in the set
-	} */
 	mlx_put_pixel(frac->img, x, y, color);
 }
 
 //fractol looping to access each pixel
-static void draw_pixel(t_fractal *frac, int32_t width, int32_t height)
+void draw_pixel(t_fractal *frac, int32_t width, int32_t height)
 {
 	int x;
 	int	y;
@@ -60,32 +50,18 @@ static void draw_pixel(t_fractal *frac, int32_t width, int32_t height)
 		while (y < width)
 		{
 			draw_frac(frac, x, y);
-			//mlx_put_pixel(frac->img, y, x, color);
 			y++;
 		}
 		x++;
 	}
 }
 
-/* void	fractol_base(t_fractal *frac)
-{	
-	frac->mlx = mlx_init(WIDTH, HEIGHT, frac->name, false);
-	if (!frac->mlx)
-		ft_error();
-	frac->img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
-	if (!frac->img)
-    	exit(EXIT_FAILURE);
-	draw_pixel(frac, WIDTH, HEIGHT);
-	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
-	mlx_loop(frac->mlx);
-	mlx_terminate(frac->mlx);
-} */
 //Fractol initiation point
 int fractol_base(t_fractal *frac)
 {
 	frac->mlx = mlx_init(WIDTH, HEIGHT, frac->name, false);
     if (!frac->mlx)
-        return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	frac->img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
     if (!frac->img) {
         mlx_terminate(frac->mlx);
@@ -93,6 +69,7 @@ int fractol_base(t_fractal *frac)
     }
 	draw_pixel(frac, WIDTH, HEIGHT);
 	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
+	mlx_key_hook(frac->mlx, &my_keyhook, frac);
 	mlx_loop(frac->mlx);
 	mlx_terminate(frac->mlx);
 	return (0);
@@ -100,12 +77,11 @@ int fractol_base(t_fractal *frac)
 int main(int ac, char **av)
 {
    	t_fractal frac;
-	//frac.width = 800;
-    //frac.height = 600;
     frac.min = -3.0;
     frac.max = 3.0;
     frac.max_iterations = 400;
 	frac.name = av[1]; //To edit
+	//frac.xshift = 0.0;
 	if (ac == 2 && !ft_strncmp(av[1], "mandelbrot", 10))
 			fractol_base(&frac);
 	else if (ac == 4 && !ft_strncmp(av[1], "julia", 5))

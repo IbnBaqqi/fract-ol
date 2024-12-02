@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_utils.c                                    :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 20:04:00 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/02 21:54:36 by sabdulba         ###   ########.fr       */
+/*   Created: 2024/12/02 22:46:30 by sabdulba          #+#    #+#             */
+/*   Updated: 2024/12/02 23:44:50 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/fractol.h"
 
-void	ft_error(void)
+void my_keyhook(mlx_key_data_t keydata, void* param)
 {
-	ft_printf("Error occured");
-	//ft_putstr_fd("Error occured", 1);
-}
-
-double scale(double nb, double min_n, double max_n, double min, double max)
-{
-  return ((max_n - min_n) * (nb - min) / (max - min) + min_n);
+	t_fractal* frac = (t_fractal*)param;
+	
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		frac->xshift += 0.5;
+	draw_pixel(frac, WIDTH, HEIGHT);
+    mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 }

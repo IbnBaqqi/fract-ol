@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:39 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/02 16:32:39 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/02 23:45:29 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,20 @@ typedef struct s_fractal
 	char		*name;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	int			width;			// Image width
-    int			height;			// Image height
-	double		min;			// Minimum value for fractal range
-    double		max;			// Maximum value for fractal range
-	int			max_iterations;	// Maximum iterations for fractal calculation
+	double		min;
+    double		max;
+	int			max_iterations;
+	double		xshift;
+	double 		yshift;
 }	t_fractal;
 
 void		ft_error(void);
 double		scale(double num, double min_n, double max_n, double min, double max);
 int			mandelbrot(double x, double y, t_fractal *frac);
 int			fractol_base(t_fractal *frac); //might change to static later
-//uint32_t	hsv_to_rgb(double h, double s, double v);
+void		draw_pixel(t_fractal *frac, int32_t width, int32_t height);
+
+//events
+void my_keyhook(mlx_key_data_t keydata, void* param);
 
 # endif
