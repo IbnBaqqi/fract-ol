@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:39 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/02 23:45:29 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/03 02:11:21 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 #include "../lib/libft/inc/libft.h"
 #include "../lib/MLX42/include/MLX42/MLX42.h"
 
-#define WIDTH 1000
-#define HEIGHT 1000
+#define WIDTH 800
+#define HEIGHT 800
 
 #define ERROR_MSG "Available set are:\n\tmandelbrot and julia.\nRun with \"./fractol setname\"\njulia set requires range/cordinate.\n"
 #define IMG_ERROR  "Image creation failed\n"
@@ -50,5 +50,6 @@ void		draw_pixel(t_fractal *frac, int32_t width, int32_t height);
 
 //events
 void my_keyhook(mlx_key_data_t keydata, void* param);
+void my_mousehook(double xdelta, double ydelta, void* param);
 
 # endif
