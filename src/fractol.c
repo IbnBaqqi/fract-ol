@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:22:49 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/03 12:15:06 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:21:10 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void draw_frac(t_fractal *frac, int x, int y)
 	int		n;
 	uint32_t color;
 	
-	a = scale(x, frac->min, frac->max, 0, HEIGHT) + frac->xshift;
-	b = scale(y, frac->min, frac->max, 0, WIDTH) + frac->yshift;
+	a = scale(x, frac->min, frac->max, 0, frac->height) + frac->xshift;
+	b = scale(y, frac->min, frac->max, 0, frac->width) + frac->yshift;
 	n = mandelbrot(a, b, frac);
 	
 	color = scale(n, BLACK, WHITE, 0, frac->max_iterations);
@@ -38,16 +38,17 @@ static void draw_frac(t_fractal *frac, int x, int y)
 }
 
 //fractol looping to access each pixel
-void draw_pixel(t_fractal *frac, int32_t width, int32_t height)
+void draw_pixel(void* param)
 {
+	t_fractal* frac = (t_fractal*)param;
 	int x;
 	int	y;
 
 	x = 0;
-	while (x < height)
+	while (x < frac->height)
 	{
 		y = 0;
-		while (y < width)
+		while (y < frac->width)
 		{
 			draw_frac(frac, x, y);
 			y++;
@@ -59,19 +60,19 @@ void draw_pixel(t_fractal *frac, int32_t width, int32_t height)
 //Fractol initiation point
 int fractol_base(t_fractal *frac)
 {
-	frac->mlx = mlx_init(WIDTH, HEIGHT, frac->name, false);
+	frac->mlx = mlx_init(frac->width, frac->height, frac->name, false);
     if (!frac->mlx)
 		return (EXIT_FAILURE);
-	frac->img = mlx_new_image(frac->mlx, WIDTH, HEIGHT);
+	frac->img = mlx_new_image(frac->mlx, frac->width, frac->height);
     if (!frac->img) {
         mlx_terminate(frac->mlx);
         return (EXIT_FAILURE);
     }
-	draw_pixel(frac, WIDTH, HEIGHT);
+	draw_pixel(frac);
 	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 	mlx_key_hook(frac->mlx, &my_keyhook, frac);
 	mlx_scroll_hook(frac->mlx, &my_mousehook, frac);
-	//mlx_loop_hook();
+	mlx_loop_hook(frac->mlx, &draw_pixel, frac);
 	mlx_loop(frac->mlx);
 	mlx_terminate(frac->mlx);
 	return (0);
@@ -81,6 +82,8 @@ int main(int ac, char **av)
    	t_fractal frac;
     frac.min = -3.0;
     frac.max = 3.0;
+	frac.width = 800;
+	frac.height = 800;
     frac.max_iterations = 200;
 	frac.name = av[1]; //To edit
 	frac.xshift = 0.0;

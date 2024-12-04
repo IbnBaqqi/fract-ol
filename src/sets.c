@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 19:07:00 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/02 16:26:13 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/04 20:37:16 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	mandelbrot(double x, double y, t_fractal *frac)
         complex = 2 * a * b;
         a = real + x;
         b = complex + y;
-
         if (a * a + b * b > 16)
+		//if (a + b > 4)
             break;
         n++;
     }

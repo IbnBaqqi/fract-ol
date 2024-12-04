@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:46:30 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/04 19:05:40 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:20:38 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,8 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
     	printf("Exiting program.\n");
     	mlx_close_window(frac->mlx);
 	}
-	/* else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-	{
-    	frac->max -= 0.1; // Zoom in
-    	frac->min += 0.1;
-    	//ft_printf("Zoomed in: min = %f, max = %f\n", frac->min, frac->max);
-	}
-	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-	{
-		frac->max += 0.1; // Zoom out
-		frac->min -= 0.1;
-		//ft_printf("Zoomed out: min = %f, max = %f\n", frac->min, frac->max);
-	} */
-	draw_pixel(frac, WIDTH, HEIGHT);
-    mlx_image_to_window(frac->mlx, frac->img, 0, 0);
+	//draw_pixel(frac);
+    //mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 }
 
 void my_mousehook(double xdelta, double ydelta, void* param)
@@ -65,6 +53,6 @@ void my_mousehook(double xdelta, double ydelta, void* param)
 		//printf("Zoomed out: min = %f, max = %f\n", frac->min, frac->max);
     }
 	// Redraw the fractal after zooming
-	draw_pixel(frac, WIDTH, HEIGHT);
-	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
+	//draw_pixel(frac);
+	//mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 }

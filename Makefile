@@ -6,14 +6,14 @@
 #    By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/21 17:23:16 by sabdulba          #+#    #+#              #
-#    Updated: 2024/12/03 12:39:07 by sabdulba         ###   ########.fr        #
+#    Updated: 2024/12/04 19:07:46 by sabdulba         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := fractol
 CC := cc
 RM := rm -rf
-FLAG := -Wall -Wextra -Werror -Ofast -03
+FLAG := -Wall -Wextra -Werror -Ofast
 
 MLX := $(MLX_DIR)/build/libmlx42.a
 MLX_DIR := ./lib/MLX42
