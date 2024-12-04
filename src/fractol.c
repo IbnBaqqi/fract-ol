@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:22:49 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/03 02:11:29 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:15:06 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int fractol_base(t_fractal *frac)
 	mlx_image_to_window(frac->mlx, frac->img, 0, 0);
 	mlx_key_hook(frac->mlx, &my_keyhook, frac);
 	mlx_scroll_hook(frac->mlx, &my_mousehook, frac);
+	//mlx_loop_hook();
 	mlx_loop(frac->mlx);
 	mlx_terminate(frac->mlx);
 	return (0);

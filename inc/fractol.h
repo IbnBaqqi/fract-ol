@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:39 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/03 02:11:21 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/03 12:10:50 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_fractal
 	mlx_image_t	*img;
 	double		min;
     double		max;
+	int			width;
+	int			height;
 	int			max_iterations;
 	double		xshift;
 	double 		yshift;
