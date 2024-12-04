@@ -6,7 +6,7 @@
 /*   By: sabdulba <sabdulba@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:46:30 by sabdulba          #+#    #+#             */
-/*   Updated: 2024/12/03 12:06:55 by sabdulba         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:05:40 by sabdulba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 	t_fractal* frac = (t_fractal*)param;
 	
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		frac->xshift += 0.2;
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		frac->xshift -= 0.2;
-	else if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS) //test
-		frac->yshift += 0.2;
-	else if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS) //test
-		frac->yshift -= 0.2;
+		frac->xshift += 0.1;
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		frac->xshift -= 0.1;
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+		frac->yshift += 0.1;
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+		frac->yshift -= 0.1;
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
     	printf("Exiting program.\n");
